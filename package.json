@@ -1,0 +1,24 @@
+{
+  "name": "FriendFinder",
+  "version": "1.0.0",
+  "description": "Node &amp; Express Server compatibility-based \"FriendFinder\" application -- basically a dating app. Takes in results from your users' surveys, then compare their answers with those from other users. The app will then display the name and picture of the user with the best overall match.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/perfettiful/FriendFinder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/perfettiful/FriendFinder/issues"
+  },
+  "homepage": "https://github.com/perfettiful/FriendFinder#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
