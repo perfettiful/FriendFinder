@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Friend Finder</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Friend Finder Survey!</h1>
+      <h3>Take our Survey to Find your Friends!</h3>
+      <hr>
+      <a href="/add"><button class="btn btn-danger btn-lg"><span class="fa fa-plus"></span> Add New Character</button></a>
+    </div>
+    <div class="row">
+
+      <div class="col-lg-12">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>Get Started ...</strong></h3>
+          </div>
+          
+          <form method="POST">
+          <div class="panel-body">
+              
+            <label id="name">Name</label>
+            <input type="text" id="name" class="form-control">
+            <br>
+            <label id="name">Photo</label>
+            <input type="text" id="photo" class="form-control">
+            <br>
+            <label id="name">Email</label>
+            <input type="text" id="email" class="form-control">
+            <br>
+
+            <div class="form-group">
+                <h3>Agree or Disagree: Busy Brain?</h3>
+                <select name="question1" id="q1">
+                    <option value="0">0 (Strongly Disagree)</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">3</option>
+                    <option value="5">5 (Strongly Agree)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <h3>Agree or Disagree: I am conscienttious?</h3>
+                <select name="question2" id="q2">
+                    <option value="0">0 (Strongly Disagree)</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">3</option>
+                    <option value="5">5 (Strongly Agree)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <h3>Agree or Disagree: I am friendly?</h3>
+                <select name="question3" id="q3">
+                    <option value="0">0 (Strongly Disagree)</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">3</option>
+                    <option value="5">5 (Strongly Agree)</option>
+                </select>
+            </div>
+
+            <div class="text-right">
+              <button type="submit" class="btn btn-primary btn-md" id="submit-btn"><span class="fa fa-search"></span> See Your Matches!</button>
+
+        </form>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>Character Statistics</strong></h3>
+          </div>
+          <div class="panel-body">
+            <div class="well">
+              <h2 id="name">Yoda</h2>
+              <div id="stats">
+                <h3><strong>Role:</strong> <span id="role">Jedi Master</span></h3>
+                <h3><strong>Age:</strong> <span id="age">900</span></h3>
+                <h3><strong>Force Points:</strong> <span id="force-points">2000</span></h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $("#submit-btn").on("click", function() {
+        // google :selcted for html select tags
+        var formData = {
+            name: $('#q1').trim.val(),
+
+
+        };
+
+        
+        $.pos
+
+
+    //   var searchedCharacter = $("#character-search").val().trim();
+
+    //   // Using a RegEx Pattern to remove spaces from searchedCharacter
+    //   // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+    //   searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
+
+    //   $tget("/api/characters/" + searchedCharacter, function(data) {
+    //     console.log(data);
+    //     if (data) {
+    //       $("#stats").show();
+    //       $("#name").text(data.name);
+    //       $("#role").text(data.role);
+    //       $("#age").text(data.age);
+    //       $("#force-points").text(data.forcePoints);
+    //     }
+    //     else {
+    //       $("#name").text("The force is not strong with this one. Your character was not found.");
+    //       $("#stats").hide();
+    //     }
+    //   });
+    });
+  </script>
+</body>
+</html>
