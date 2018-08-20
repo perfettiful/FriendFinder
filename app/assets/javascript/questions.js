@@ -22,29 +22,30 @@ $("#submit").on("click", function (event) {
 
     // Extract all answers from questionaire and push them to scores array
     let scores = [];
-    let questions = $('.wrapquestion .custom-range')
-    for (i = 0; i < questions.length; i++) {
-        scores.push(questions[i].value);
+    let $questions = $('.wrapquestion .custom-range')
+    for (i = 0; i < $questions.length; i++) {
+        scores.push($questions[i].value);
     };
 
     // Initiate newFriend object via createFriend constructor
     var newFriend = new createFriend(name, photo, scores);
 
-    // post the successfully validated request to server
+    // Now Post successfully instantiated friend to API
 
-    $.post("/api/friends", newFriend,
-        function (data) {
+    $.post("/api/friends", newFriend, (data) => {
+            //Calling selectors
+            let $matchName = $("#match-name");
+            let $matchImg = $("#match-img");
+            let $resultsModal = $("#results-modal");
 
-            // response receive as true, we are successful.
+            // If response returns true, post has succeeded
             if (data) {
-                // Grab the result from the AJAX post to show match's name and photo are displayed.
-                $("#match-name").text(data.name);
-                $("#match-img").attr("src", data.photo);
+                // Collect result from the AJAX post to show users name and profile img were received
+                $matchName.text(data.name);
+                $matchImg.attr("src", data.photo);
 
-                // Show the modal with the best match
-                $("#results-modal").modal("toggle");
+                // Display the best match modal
+                $resultsModal.modal("toggle");
             }
-
-        });
-
-});
+        });//End callback fct
+});//End API POST req
