@@ -3,34 +3,42 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Friend Finder</title>
+  <title>Friend Finder Home</title>
   <!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <style>
+  body {
+        width: 90%;
+        margin: auto;
+        background-color: rgb(180, 81, 81)
+     }</style>
   
   <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/style.css" />
-  <link rel="icon" type="image/jpeg" href="app/assets/images/kisspng-computer-icons-symbol-friends-5ad12ed58ed960.8519720715236584535851.jpg" />
+  <link rel="icon" type="image/jpeg" href="https://cdn3.iconfinder.com/data/icons/teamwork/256/friends-friendship-partner-team-teamwork-009-512.png" />
 </head>
-
-
-
 
 <body>
 
     <div class="container-fluid">
 
-        <div class="jumbotron bg-gradient-light mt-4">
+        <div class="jumbotron bg-gradient-dark mt-6">
             <h1>Friend Finder</h1>
+            <img src="https://img.tineye.com/result/56517c006776dba419229d25dd6ea356e7f48709441d19b32e17a9ace915ba5e?size=160">
             <br>
-            <h4>Answer a few basic questions and find the friend with the greatest compatibility!</h4>
+            <h4>Start Finding Your Next BFF!
+            </h4>
             <br>
 
             <div>
                 <a href="/survey">
-                    <button type="button" class="btn btn-lg btn-info">
-                        <h4>Go to Survey</h4>
+                    <button type="button" class="btn btn-md btn-success">
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                        <h4>
+                            Fill Out our Survey</h4>
                     </button>
                 </a>
             </div>
@@ -40,8 +48,9 @@
         <footer class="footer">
             <div class="container-fluid">
                 <p>
-                    <a href="/api/friends">API Friends List</a> |
-                    <a href="https://github.com/vschaitu/Friend_Finder" target="_blank">GitHub Repo</a>
+                 <a href="https://github.com/perfettiful/FriendFinder" target="_blank">On GitHub</a> |
+
+                <a href="/api/friends">Checkout our API</a> 
                 </p>
             </div>
         </footer>

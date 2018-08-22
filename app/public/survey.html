@@ -2,37 +2,52 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Survey-FriendFinder</title>
+    <title>FriendFinder Survey</title>
 
     <!-- Latest jquery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
 
-
+        <link rel="icon" type="image/jpeg" href="https://cdn3.iconfinder.com/data/icons/teamwork/256/friends-friendship-partner-team-teamwork-009-512.png" />
     <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
         crossorigin="anonymous">
+
+    <style>
+         body {
+                      width: 90%;
+                      margin: auto;
+                      background-color: rgb(180, 81, 81)
+                   }</style>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
 
     <!-- custom CSS -->
-    <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css" />
     <!-- Chosen -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
 
-    <link rel="icon" type="image/jpeg" href="app/assets/images/kisspng-computer-icons-symbol-friends-5ad12ed58ed960.8519720715236584535851.jpg" />
+    <link rel="icon" type="image/jpeg" href="./assets/images/kisspng-computer-icons-symbol-friends-5ad12ed58ed960.8519720715236584535851.jpg" />
 
 </head>
 
 <body>
 
     <div class="container-fluid text-light">
+         <div>
+                    <a href="/">
+                        <button type="button" class="btn btn-md btn-success">
+                            <h4>Home</h4>
+                        </button>
+                    </a>
+         </div>
         <h2 class="text-center my-2 text-info">Survey Questions</h2>
-        <h6 class="text-warning">Name* (Required)</h6>
+        <h2>About You</h2>
+        <h6 class="text-warning">*Name (Required)</h6>
         <input type="text" id="name" class="form-control" required>
         <br>
-        <h6 class="text-warning">Link to Photo Image* (Required)</h6>
+        <h6 class="text-warning">*Profile Image Link (Required)</h6>
         <input type="text" id="photo" class="form-control" required>
         <br>
         <div class="wrapquestion my-2">
@@ -152,7 +167,7 @@
                 </div>
                 <div class="modal-body">
                     <h2 id="match-name"></h2>
-                    <img id="match-img" src="dummy.img" style="max-height: 50vh; max-width: 50vh" alt="matchimage">
+                    <img id="match-img" src="./assets/images/friends.jpeg" style="max-height: 50vh; max-width: 50vh" alt="matchimage">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -160,9 +175,73 @@
             </div>
 
         </div>
+
+        <footer class="footer">
+                <div class="container-fluid">
+                    <p>
+                     <a href="https://github.com/perfettiful/FriendFinder" target="_blank">On GitHub</a> |
+    
+                    <a href="/api/friends">Checkout our API</a> 
+                    </p>
+                </div>
+            </footer>
     </div>
 
-    <script type="text/javascript" src="../assets/javascript/survey.js"></script>
+
+    <script type="text/javascript" >
+    //Executed on submition of form in
+
+$("#submit").on("click", function (event) {
+
+event.preventDefault();
+
+function createFriend(name, photo, scores) {
+    this.name = name;
+    this.photo = photo;
+    this.scores = scores
+}
+
+// collect img and name of new user
+let photo = $('#photo').val().trim();
+let name = $('#name').val().trim();
+
+
+//Data validation to prevent incomplete submition
+if (photo == "" || name == "" ) {
+    alert("Please provide your name and a profile picture to use.");
+    return false
+}
+
+// Extract all answers from questionaire and push them to scores array
+let scores = [];
+let $questions = $('.wrapquestion .custom-range')
+for (i = 0; i < $questions.length; i++) {
+    scores.push($questions[i].value);
+};
+
+// Initiate newFriend object via createFriend constructor
+var newFriend = new createFriend(name, photo, scores);
+
+// Now Post successfully instantiated friend to API
+
+$.post("/api/friends", newFriend, (data) => {
+        //Calling selectors
+        let $matchName = $("#match-name");
+        let $matchImg = $("#match-img");
+        let $resultsModal = $("#results-modal");
+
+        // If response returns true, post has succeeded
+        if (data) {
+            // Collect result from the AJAX post to show users name and profile img were received
+            $matchName.text(data.name);
+            $matchImg.attr("src", data.photo);
+
+            // Display the best match modal
+            $resultsModal.modal("toggle");
+        }
+    });//End callback fct
+});//End API POST req
+    </script>
 
 </body>
 
